@@ -108,5 +108,4 @@ function addToList () {
 
 
 
-
-
+searchCityBtn.addEventListener('click',displayWeather);
