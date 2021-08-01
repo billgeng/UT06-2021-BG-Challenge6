@@ -111,6 +111,21 @@ function addToList (word) {
    
 }
 
+function loadhistory() {
+    $('ul').empty ();
+    var historyCityList = JSON.parse(localStorage.getItem('citylist'));
+    if (historyCityList !==null) {
+        historyCityList =JSON.parse(localStorage.getItem('citylist'));
+        for (n=0;n<historyCityList.length;n++) {
+            addToList(historyCityList[n]);
+        }
+    
+    }
+
+}
+
+
+
 
 
 searchCityBtn.addEventListener('click',displayWeather);
