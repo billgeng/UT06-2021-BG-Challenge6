@@ -1,3 +1,4 @@
+
 var cityname = "";
 var searchCity = document.querySelector('#search-city-name');
 var searchCityBtn = document.querySelector('#search-btn');
@@ -17,6 +18,7 @@ function displayWeather(event) {
     event.preventDefault();
     if (searchCity.val().trim()!=="") {
         cityname = searchCity.val().trim();
+        console.log(cityname);
         currentWeather(cityname);
     }
 }
@@ -32,7 +34,7 @@ function currentWeather (cityname) {
         console.log(response.value);
 
        var weatherIcon = response.weather[0].icon;
-       var iconurl = "http://openweathermap.org/img/wn/"+ weatherIcon +"@2x.png";
+       var iconurl = 'http://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
        var date = new Date (response.dt*1000).toLocaleDateString();
        currentCity.innerHTML = response.name + '(' + date + ')' + '<img src=' + iconurl + '>';
 
@@ -98,11 +100,12 @@ function currentWeather (cityname) {
 
 }
 
-function addToList (c) {
+function addToList () {
     var listEl = document.createElement('li');
     listEl.innerHTML = cityname.toUpperCase();
     document.querySelector('.history-list').appendChild(listEl);
 }
+
 
 
 
