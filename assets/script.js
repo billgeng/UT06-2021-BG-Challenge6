@@ -7,7 +7,7 @@ var currentWind = document.querySelector('#wind-speed');
 var currentHumidity = document.querySelector('#humidity');
 var currentUv = document.querySelector('#uv-index');
 var historyCity = [];
-var APIKey = 'c6abcf46d3c1275bb6975cedbb19a731';
+
 
 
 
@@ -24,11 +24,13 @@ function displayWeather(event) {
 function currentWeather (cityname) {
   
 
-    fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&appid=' + APIKey)
+    fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
 
 
     .then (response => {
-    
+       return response.json();
+        console.log(response.value);
+
        var weatherIcon = response.weather[0].icon;
        var iconurl = "http://openweathermap.org/img/wn/"+ weatherIcon +"@2x.png";
        var date = new Date (response.dt*1000).toLocaleDateString();
@@ -65,7 +67,7 @@ function currentWeather (cityname) {
    })
 
    function UVIndex (ln,lt) {
-       fetch ('http://api.openweathermap.org/data/2.5/uvi?appid='+ APIKey+'&lat='+lt+'&lon='+ln) 
+       fetch ('http://api.openweathermap.org/data/2.5/uvi?appid=c6abcf46d3c1275bb6975cedbb19a731'+'&lat='+lt+'&lon='+ln) 
        .then (response => {
            currentUv.innerHTML = response.value;
        })
@@ -74,7 +76,7 @@ function currentWeather (cityname) {
    function forecast (cityid) {
        var dayover = false;
        
-       fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid='+ APIKey )
+       fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731' )
        .then (response => {
            for (i=0; i < 5; i++) {
                var date = new Date ((response.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
