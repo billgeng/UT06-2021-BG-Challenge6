@@ -21,7 +21,7 @@ function displayWeather(event) {
 function currentWeather (cityname) {
   
 
-    fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
+    fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&units=imperial&APPID=c6abcf46d3c1275bb6975cedbb19a731')
 
 
     .then (response => {
