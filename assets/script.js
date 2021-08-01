@@ -11,8 +11,8 @@ var historyCity = [];
 
 function displayWeather(event) {
     event.preventDefault();
-    if (searchCity.textContent !=="") {
-        cityname = searchCity.textContent;
+    if (searchCity.value !=="") {
+        cityname = searchCity.value;
         console.log(cityname);
         currentWeather(cityname);
     }
@@ -24,27 +24,28 @@ function currentWeather (cityname) {
     fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&units=imperial&APPID=c6abcf46d3c1275bb6975cedbb19a731')
 
 
-    .then (response => {
-       
-        console.log(response);
-
-       var weatherIcon = response.weather[0].icon;
+    .then (function (response) {
+        response.json()
+        
+        .then (function(data){
+        
+       var weatherIcon = data.weather[0].icon;
        var iconurl = 'http://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
-       var date = new Date (response.dt*1000).toLocaleDateString();
-       currentCity.innerHTML = response.name + '(' + date + ')' + '<img src=' + iconurl + '>';
+       var date = new Date (data.dt*1000).toLocaleDateString();
+       currentCity.innerHTML = data.name + '(' + date + ')' + '<img src=' + iconurl + '>';
 
-       var tempF = (response.main.temp - 273.15) * 1.8 + 32;
+       var tempF = (data.main.temp - 273.15) * 1.8 + 32;
        currentTemp.innerHTML = tempF.toFixed (2) + '&#8457';
 
-       var ws = response.wind.speed;
+       var ws = data.wind.speed;
        var winsmph = (ws*2.237).toFixed(1);
        currentWind.innerHTML = winsmph + 'MPH';
        
-       currentHumidity.innerHTML = response.main.humidity + '%';
+       currentHumidity.innerHTML = data.main.humidity + '%';
 
-       UVIndex(response.coord.lon,response.coord.lat);
-       forecast(response.id);
-       if (response.cod ==200){
+       UVIndex(data.coord.lon,data.coord.lat);
+       forecast(data.id);
+       if (data.cod ==200){
            historyCity = JSON.parse(localStorage.getItem('citylist'));
 
            if (historyCity == null ) {
@@ -60,28 +61,34 @@ function currentWeather (cityname) {
                }
            }
        }
-
+    })
    })
 
    function UVIndex (ln,lt) {
        fetch ('http://api.openweathermap.org/data/2.5/uvi?appid=c6abcf46d3c1275bb6975cedbb19a731'+'&lat='+lt+'&lon='+ln) 
-       .then (response => {
-           currentUv.innerHTML = response.value;
+       .then (function(response) {
+        response.json()
+        .then (function (data) {
+            currentUv.innerHTML = data.value;
+        })   
+        
        })
    }
    
-   function forecast (cityid) {
+   function forecast () {
        var dayover = false;
        
        fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731' )
-       .then (response => {
+       .then (function (response) {
+           response.json()
+           .then (function (data) {
            for (i=0; i < 5; i++) {
-               var date = new Date ((response.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
-               var iconweather = response.list[((i+1)*8)-1].weather[0].icon;
+               var date = new Date ((data.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
+               var iconweather = data.list[((i+1)*8)-1].weather[0].icon;
                var iconurl = 'https://openweathermap.org/img/wn/'+ iconweather + '.png';
-               var tempC = response.list[((i+1)*8)-1].main.temp;
+               var tempC = data.list[((i+1)*8)-1].main.temp;
                var tempF = (((tempC-273.5)*1.8)+32).toFixed(2);
-               var humidity = response.list[((i+1)*8)-1].main.humidity;
+               var humidity = data.list[((i+1)*8)-1].main.humidity;
 
                document.getElementById('#fDate'+i).innerHTML = date;
                document.getElementById('#fImg'+i).innerHTML = '<img src=' + iconurl+ '>';
@@ -89,6 +96,7 @@ function currentWeather (cityname) {
                document.getElementById('#fHumidity'+i).innerHTML = humidity + '%';
 
            }
+        })
        })
    }
 
@@ -97,7 +105,7 @@ function currentWeather (cityname) {
 
 function addToList () {
     var listEl = document.createElement('li');
-    listEl.innerHTML = cityname.toUpperCase();
+    listEl.innerHTML = cityname;
     document.querySelector('.history-list').appendChild(listEl);
 }
 
