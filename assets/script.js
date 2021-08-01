@@ -9,15 +9,10 @@ var currentHumidity = document.querySelector('#humidity');
 var currentUv = document.querySelector('#uv-index');
 var historyCity = [];
 
-
-
-
-
-
 function displayWeather(event) {
     event.preventDefault();
-    if (searchCity.val().trim()!=="") {
-        cityname = searchCity.val().trim();
+    if (searchCity.textContent !=="") {
+        cityname = searchCity.textContent;
         console.log(cityname);
         currentWeather(cityname);
     }
@@ -30,8 +25,8 @@ function currentWeather (cityname) {
 
 
     .then (response => {
-       return response.json();
-        console.log(response.value);
+       
+        console.log(response);
 
        var weatherIcon = response.weather[0].icon;
        var iconurl = 'http://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
