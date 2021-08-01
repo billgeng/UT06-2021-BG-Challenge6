@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Weather Dashboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./assets/style.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div id="header" class="header-container jumbotron container-fluid text-center mt-2 p-2">
+        <h1> <strong> Weather Dashboard</strong></h1>
+</div>
+
+<div class="body-container">
+  
+<div id="row-box" class="row  ">
+    <div class="col-sm-4 bg-light">
+      <div id="search-box" class="search-container">
+
+        <h3 class="pt-1"> <strong>Search for a City </strong> </h3>
+        <input type="search" name="searcher-city" id="search-city-name" class="form-control" placeholder = "Toronto" />
+        
+        <div class="d-grid gap-2">
+        <button id="search-btn"  type="button" class="btn btn-primary"  >Search</button> 
+        </div>       
+       </div>
+       <hr>
+      <div id="histroy-box" class="histroy-container">
+        <ul class="histroy-list">
+          
+        </ul>
+      </div>
+    </div>
+    
+    <div id="Weather-show" class="col-sm-8">
+    <div class="row ml-2 border border-dark current-container">
+      <div id="current-weather" class="col-sm-12">
+       <h3 class="city-name mb-1 mt-2 bolder " id="current-city"><strong>Toronto</strong></h3>
+       <p>Temperature: <span class="current" id="temperature"></span> </p>
+       <p>Wind: <span class="current" id="wind-speed"></span> </p>
+       <p>Humidity: <span class="current" id="humidity"></span> </p>
+       <p>UV index: <span class="current bg-success rounded text-white py-0 px-3" id="uv-index"></span> </p>
+    </div>
+  </div>
+
+    <div id="5days-weather" class="col-sm-12">
+      <h3> <strong>5-Day Forecast :</strong></h3>
+      <div class="row text-light justify-content-sm-around">
+        <div class="col-sm-2 forecast text-white ml-2 mb-3 p-2 mt-2 ">
+          <p id="fDate0"></p>
+          <p id="fImg0"></p>
+          <p>Temp : <span id="fTemp0"></span> </p>
+          <p>Wind : <span id="fWind0"></span> </p>
+          <p>Humidity : <span id="fHumidity0"></span> </p>
+        </div>
+        <div class="col-sm-2 forecast text-white ml-2 mb-3 p-2 mt-2 ">
+          <p id="fDate1"></p>
+          <p id="fImg1"></p>
+          <p>Temp : <span id="fTemp1"></span> </p>
+          <p>Wind : <span id="fWind1"></span> </p>
+          <p>Humidity: <span id="fHumidity1"></span> </p>
+        </div>
+        <div class="col-sm-2 forecast text-white ml-2 mb-3 p-2 mt-2 ">
+          <p id="fDate2"></p>
+          <p id="fImg2"></p>
+          <p>Temp : <span id="fTemp2"></span> </p>
+          <p>Wind : <span id="fWind2"></span> </p>
+          <p>Humidity: <span id="fHumidity2"></span> </p>
+        </div>
+        <div class="col-sm-2 forecast text-white ml-2 mb-3 p-2 mt-2 ">
+          <p id="fDate3"></p>
+          <p id="fImg3"></p>
+          <p>Temp : <span id="fTemp3"></span> </p>
+          <p>Wind : <span id="fWind3"></span> </p>
+          <p>Humidity: <span id="fHumidity3"></span> </p>
+        </div>
+        <div class="col-sm-2 forecast text-white ml-2 mb-3 p-2 mt-2 ">
+          <p id="fDate4"></p>
+          <p id="fImg4"></p>
+          <p>Temp : <span id="fTemp4"></span> </p>
+          <p>Wind : <span id="fWind4"></span> </p>
+          <p>Humidity: <span id="fHumidity4"></span> </p>
+        </div>
+      </div>
+     </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src='./assets/script.js'></script>
+</body>
+</html>
