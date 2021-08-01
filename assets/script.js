@@ -76,12 +76,13 @@ function currentWeather (cityname) {
    }
    
    function forecast () {
-       var dayover = false;
        
-       fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731' )
+       
+       fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
        .then (function (response) {
            response.json()
            .then (function (data) {
+               console.log(data);
            for (i=0; i < 5; i++) {
                var date = new Date ((data.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
                var iconweather = data.list[((i+1)*8)-1].weather[0].icon;
@@ -89,12 +90,14 @@ function currentWeather (cityname) {
                var tempC = data.list[((i+1)*8)-1].main.temp;
                var tempF = (((tempC-273.5)*1.8)+32).toFixed(2);
                var humidity = data.list[((i+1)*8)-1].main.humidity;
+               var wind = data.list[((i+1)*8)-1].wind.speed
 
-               document.getElementById('#fDate'+i).innerHTML = date;
-               document.getElementById('#fImg'+i).innerHTML = '<img src=' + iconurl+ '>';
-               document.getElementById('#fTemp'+i).innerHTML = tempF + '&#8457';
-               document.getElementById('#fHumidity'+i).innerHTML = humidity + '%';
-
+               $('#fDate'+i).html(date) ;
+               $('#fImg'+i).html ('<img src=' + iconurl+ '>');
+               $('#fTemp'+i).html(tempF + '&#8457');
+               $('#fWind'+i).html(wind + 'MPH');
+               $('#fHumidity'+i).html(humidity + '%');
+              
            }
         })
        })
@@ -103,10 +106,12 @@ function currentWeather (cityname) {
 
 }
 
-function addToList () {
-    var listEl = document.createElement('li');
-    listEl.innerHTML = cityname;
-    document.querySelector('.history-list').appendChild(listEl);
+function addToList (word) {
+    var listEl = $ ('<li>' + word.toUpperCase()+ '</li>' );
+    $(listEl).attr('class','list-group-item');
+    $(listEl).attr('data-value',word.toUpperCase());
+    $('.history-list').append(listEl);
+   
 }
 
 
