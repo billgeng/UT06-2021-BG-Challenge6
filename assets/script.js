@@ -76,8 +76,7 @@ function currentWeather (cityname) {
    }
    
    function forecast () {
-       
-       
+          
        fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
        .then (function (response) {
            response.json()
@@ -102,15 +101,13 @@ function currentWeather (cityname) {
         })
        })
    }
-
-
 }
 
 function addToList (word) {
     var listEl = $ ('<li>' + word.toUpperCase()+ '</li>' );
     $(listEl).attr('class','list-group-item');
     $(listEl).attr('data-value',word.toUpperCase());
-    $('.history-list').append(listEl);
+    $('#history').append(listEl);
    
 }
 
