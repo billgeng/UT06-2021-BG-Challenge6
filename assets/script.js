@@ -34,7 +34,7 @@ function currentWeather (cityname) {
        var date = new Date (data.dt*1000).toLocaleDateString();
        currentCity.innerHTML = data.name + '(' + date + ')' + '<img src=' + iconurl + '>';
 
-       var tempF = (data.main.temp - 273.15) * 1.8 + 32;
+       var tempF = data.main.temp ;
        currentTemp.innerHTML = tempF.toFixed (2) + '&#8457';
 
        var ws = data.wind.speed;
