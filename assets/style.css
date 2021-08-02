@@ -43,13 +43,7 @@ span {
   margin: 5px;
 }
 
-li {
-  background: gray;
-  display: flexbox;
-  flex-direction: column;
-  text-decoration: underline;
-  width: 100%;
-}
+
 
 p {
   padding: 2px;
