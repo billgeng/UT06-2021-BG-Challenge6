@@ -21,7 +21,7 @@ function displayWeather(event) {
 function currentWeather (cityname) {
   
 
-    fetch ('http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&units=imperial&APPID=c6abcf46d3c1275bb6975cedbb19a731')
+    fetch ('https://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&units=imperial&APPID=c6abcf46d3c1275bb6975cedbb19a731')
 
 
     .then (function (response) {
@@ -30,7 +30,7 @@ function currentWeather (cityname) {
         .then (function(data){
         
        var weatherIcon = data.weather[0].icon;
-       var iconurl = 'http://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
+       var iconurl = 'https://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
        var date = new Date (data.dt*1000).toLocaleDateString();
        currentCity.innerHTML = data.name + '(' + date + ')' + '<img src=' + iconurl + '>';
 
@@ -65,7 +65,7 @@ function currentWeather (cityname) {
    })
 
    function UVIndex (ln,lt) {
-       fetch ('http://api.openweathermap.org/data/2.5/uvi?appid=c6abcf46d3c1275bb6975cedbb19a731'+'&lat='+lt+'&lon='+ln) 
+       fetch ('https://api.openweathermap.org/data/2.5/uvi?appid=c6abcf46d3c1275bb6975cedbb19a731'+'&lat='+lt+'&lon='+ln) 
        .then (function(response) {
         response.json()
         .then (function (data) {
@@ -77,7 +77,7 @@ function currentWeather (cityname) {
    
    function forecast () {
           
-       fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
+       fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityname + '&appid=c6abcf46d3c1275bb6975cedbb19a731')
        .then (function (response) {
            response.json()
            .then (function (data) {
@@ -119,7 +119,8 @@ function loadhistory() {
         for (n=0;n<historyCityList.length;n++) {
             addToList(historyCityList[n]);
         }
-    
+     cityname= historyCityList[n-1];
+       currentWeather(cityname);
     }
 
 }
@@ -129,3 +130,4 @@ function loadhistory() {
 
 
 searchCityBtn.addEventListener('click',displayWeather);
+$(window).on('load',loadhistory);
