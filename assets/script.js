@@ -28,17 +28,13 @@ function currentWeather (cityname) {
         response.json()
         
         .then (function(data){
-        console.log(data);
+        
        var weatherIcon = data.weather[0].icon;
        var iconurl = 'https://openweathermap.org/img/wn/'+ weatherIcon +'@2x.png';
        var date = new Date (data.dt*1000).toLocaleDateString();
        currentCity.innerHTML = data.name + '(' + date + ')' + '<img src=' + iconurl + '>';
 
-<<<<<<< HEAD
        var tempF = data.main.temp;
-=======
-       var tempF = data.main.temp ;
->>>>>>> 905be0f5db7c170fdcdedc6839ee0c0f0af219dd
        currentTemp.innerHTML = tempF.toFixed (2) + '&#8457';
 
        var ws = data.wind.speed;
