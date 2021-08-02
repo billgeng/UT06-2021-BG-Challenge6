@@ -105,7 +105,7 @@ function currentWeather (cityname) {
 
 function addToList (word) {
     var listEl = $ ('<li>' + word.toUpperCase()+ '</li>' );
-    $(listEl).attr('class','list-group-item');
+    $(listEl).attr('class','list-group-item btn btn-secondary btn-block');
     $(listEl).attr('data-value',word.toUpperCase());
     $('#history').append(listEl);
    
@@ -125,9 +125,16 @@ function loadhistory() {
 
 }
 
-
+function representPast(event) {
+    var liEl =event.target;
+    if (event.target.matches('li')) {
+        cityname = liEl.textContent.trim();
+        currentWeather(cityname);
+    }
+}
 
 
 
 searchCityBtn.addEventListener('click',displayWeather);
 $(window).on('load',loadhistory);
+$(document).on('click',representPast);
