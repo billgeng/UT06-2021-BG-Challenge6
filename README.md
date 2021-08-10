@@ -1,13 +1,12 @@
 # UT06-2021-BG-Challenge6
+
 # 06 Server-Side APIs: Weather Dashboard
 
 User Story
 
-
 AS A traveler
 I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
-
 
 ## Acceptance Criteria
 
@@ -27,3 +26,8 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
+
+Please link this app in : https://billgeng.github.io/UT06-2021-BG-Challenge6/
+
+screenshot
+```
