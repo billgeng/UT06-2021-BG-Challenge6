@@ -31,3 +31,4 @@ Please link this app in : https://billgeng.github.io/UT06-2021-BG-Challenge6/
 
 screenshot
 ![Screenshot_Weather-Dashboard](https://user-images.githubusercontent.com/85249402/128889187-2e6e893a-5b23-4fcb-9856-ef2682b67b47.png)
+Screenshot_Weather-Dashboard.png
