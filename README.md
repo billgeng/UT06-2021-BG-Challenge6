@@ -30,4 +30,5 @@ THEN I am again presented with current and future conditions for that city
 Please link this app in : https://billgeng.github.io/UT06-2021-BG-Challenge6/
 
 screenshot
-```
+![Screenshot_Weather-Dashboard](https://user-images.githubusercontent.com/85249402/128888890-09d4ee45-4436-4acd-8b79-30708142e17a.png)
+
